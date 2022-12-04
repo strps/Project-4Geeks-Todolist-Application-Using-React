@@ -22,13 +22,25 @@ h1 {
     0em 0.7em 0.5em -0.2em #00000030, 0em 1em 0em -0.4em #ffffff,
     0em 1.2em 0.5em -0.4em #00000030, 0em 1.5em 0em -0.6em #ffffff,
     0em 1.7em 0.5em -0.6em #00000030;
-  min-width: 20em;
+  min-width: 28em;
   min-height: 20em;
   padding: 1em;
   display: flex;
   flex-direction: column;
   text-align: start;
+  transition: min-width 1s ease, min-height 1s ease, box-shadow 1s ease;
+
 }
+
+.todo-list:hover, .todo-list:focus-within{
+  min-width: 29em;
+  min-height: 21em;
+  box-shadow: 0em 0.2em 0.5em #00000030, 0em 0.5em 0em -1em #ffffff,
+  0em 0.7em 0.5em -1em #00000030, 0em 1em 0em -1.2em #ffffff,
+  0em 1.2em 0.5em -1.2em #00000030, 0em 1.5em 0em -1.4em #ffffff,
+  0em 1.7em 0.5em -1.4em #00000030;
+}
+
 .todo-list input {
   border: none;
   font-size: 2em;
