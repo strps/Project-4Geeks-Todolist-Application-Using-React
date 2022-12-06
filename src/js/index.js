@@ -11,14 +11,3 @@ import TodoList from "./component/todolist.jsx";
 //render your react application
 ReactDOM.render(<TodoList />, document.querySelector("#app"));
 
-function ListItems(props) {
-	return (
-		<>{props.listItems.map((todo, i) => (
-			<li key={i}>
-				{todo}
-			</li>
-		))}
-		</>
-	)
-
-}
