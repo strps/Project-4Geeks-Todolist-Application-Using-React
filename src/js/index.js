@@ -6,8 +6,15 @@ import ReactDOM from "react-dom";
 import "../styles/index.css";
 
 //import your own components
-import TodoList from "./component/todolist.jsx";
+import ListItems from "./component/todo.jsx"
+
+const listItems=[
+    {label: "Tengo que hacer esto", done : false},
+    {label: "Y esto", done : false},
+    {label: "Esto tambien", done : false},
+    {label: "Esto talvez", done : false},
+    {label: "Esto ya lo hice", done : true}];
 
 //render your react application
-ReactDOM.render(<TodoList />, document.querySelector("#app"));
+ReactDOM.render(<ListItems  listItems={listItems} />, document.querySelector("#app"));
 
