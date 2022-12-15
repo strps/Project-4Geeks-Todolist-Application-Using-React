@@ -9,7 +9,7 @@ const TodoList = () => {
 		{label: "Y esto", done : false},
 		{label: "Esto tambien", done : false},
 		{label: "Esto talvez", done : false},
-		{label: "Esto ya lo hice", done : false}]);
+		{label: "Esto ya lo hice", done : true}]);
 
 	return (
 		<ListItems  listItems={listItems} /> 
