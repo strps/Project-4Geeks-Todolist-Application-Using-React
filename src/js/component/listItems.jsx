@@ -8,19 +8,16 @@ function ListItems(props) {
     function itemCloseButtonHandler(e) {
         let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
         setlistItems(nextTodos)
-        updateList(props.user, nextTodos)
 	}
     
 	function itemCheckButtonHandler(event) {
         let index = event.target.getAttribute("index")
         let nextTodos = todos.map((e, i) => { if (index == i) e.done = !e.done; return e })
 		setlistItems(nextTodos)
-        updateList(props.user, nextTodos)
 	}
     
     function deleteAllItems(event) {
         setlistItems([])
-        updateList(props.user, [])
     }
     
     function onKeyUpHandler(e) {
@@ -28,7 +25,6 @@ function ListItems(props) {
             let nextTodos = [...todos, { label: e.target.value, done: false }]
             setlistItems(nextTodos)
             setTextValue("")
-            updateList(props.user, nextTodos)
         }
     }
 
@@ -65,20 +61,6 @@ function ListItems(props) {
             </div>
         </>
     )
-}
-
-async function updateList (user, todos){
-    console.log(`Updating List from user:"${user}" with:\n ${todos}`)
-    let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${user}`, {
-		method: "PUT",
-		body: JSON.stringify(todos),
-		headers: {
-			"Content-Type": "application/json"
-		}
-	})
-
-    console.log("Respose: \n")
-    console.log(await response.json())
 }
 
 

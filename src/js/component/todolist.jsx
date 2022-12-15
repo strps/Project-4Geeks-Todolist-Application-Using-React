@@ -1,36 +1,20 @@
 import React, { useState } from "react";
 
-import Login from "./login.jsx"
-
 import ListItems from "./listItems.jsx"
 
 const TodoList = () => {
 
-	const [user, setUser] = useState("")
-
-	const [listItems, setlistItems] = useState([]);
+	const [listItems, setlistItems] = useState([
+		{label: "Tengo que hacer esto", done : false},
+		{label: "Y esto", done : false},
+		{label: "Esto tambien", done : false},
+		{label: "Esto talvez", done : false},
+		{label: "Esto ya lo hice", done : false}]);
 
 	return (
-		<>
-			{user ? <ListItems user={user} listItems={listItems} /> : <Login setUser={setUser} setlistItems={setlistItems} />}
-		</>
+		<ListItems  listItems={listItems} /> 
 	);
 };
-
-
-async function getTodoList(user) {
-
-	let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${user}`)
-
-	if (!response.ok) {
-		let body = await response.json()
-		const message = body.msg
-		throw new Error(message)
-	}
-
-	return response.json()
-}
-
 
 
 
