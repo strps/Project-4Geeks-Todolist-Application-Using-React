@@ -67,18 +67,44 @@ h1 {
   text-align: center;
   width: 1.5em;
   height: 1.5em;
-  border-radius: 50%;
+  border-radius: 25%;
   border: none;
   background-color: #ffffff00;
-  margin-left: auto;
 }
 
 .todo-list li > button:hover {
-  border: none;
   background-color: #dddddd;
+}
+
+.todo-list li> button:first-of-type{
   margin-left: auto;
 }
 
 .todo-list>span {
   margin-top: auto;
 }
+
+.done-items {
+  color: #aaaaaa;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0em 0.2em 0.5em #00000030;
+  padding: 1em;
+}
+.login *{
+  margin-bottom: 1em;
+}
+
+.warning {
+  color: red;
+}
+
+button{
+  background-color: #eeeeee;
+  transition: background-color 1s ease;
+}
+
+
