@@ -1,28 +1,34 @@
 import React, { useState } from "react";
 
 function ListItems(props) {
-    
+
     const [textValue, setTextValue] = useState("")
     const [todos, setlistItems] = useState(props.listItems);
-    
+
     function itemCloseButtonHandler(e) {
-        let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
-        setlistItems(nextTodos)
-        updateList(props.user, nextTodos)
-	}
-    
-	function itemCheckButtonHandler(event) {
+        console.log("TODOS LENGTH: " + todos.length)
+        if (todos.length > 1) {
+            let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
+            setlistItems(nextTodos)
+            updateList(props.user, nextTodos)
+        } else {
+            alert("The lost cannot be empty")
+        }
+    }
+
+    function itemCheckButtonHandler(event) {
         let index = event.target.getAttribute("index")
         let nextTodos = todos.map((e, i) => { if (index == i) e.done = !e.done; return e })
-		setlistItems(nextTodos)
+        setlistItems(nextTodos)
         updateList(props.user, nextTodos)
-	}
-    
+    }
+
     function deleteAllItems(event) {
         setlistItems([])
-        updateList(props.user, [])
+        deleteList(props.user)
+        props.setUser("")
     }
-    
+
     function onKeyUpHandler(e) {
         if (e.key == "Enter" && e.target.value != "") {
             let nextTodos = [...todos, { label: e.target.value, done: false }]
@@ -61,24 +67,35 @@ function ListItems(props) {
                     ))}
                 </ul>
                 <span>{itemsLeft} items left.</span>
-                <button onClick={deleteAllItems}>Delete all items</button>
+                <button onClick={deleteAllItems}>Delete list and user</button>
             </div>
         </>
     )
 }
 
-async function updateList (user, todos){
+async function updateList(user, todos) {
     console.log(`Updating List from user:"${user}" with:\n ${todos}`)
     let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${user}`, {
-		method: "PUT",
-		body: JSON.stringify(todos),
-		headers: {
-			"Content-Type": "application/json"
-		}
-	})
+        method: "PUT",
+        body: JSON.stringify(todos),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
 
     console.log("Respose: \n")
     console.log(await response.json())
+}
+
+async function deleteList(user) {
+    console.log(`Updating List from user:${user}`)
+    let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${user}`, {
+        method: "DELETE"
+    })
+
+    console.log("Respose: \n")
+    console.log(await response.json())
+
 }
 
 
