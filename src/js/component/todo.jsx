@@ -5,8 +5,10 @@ function ListItems(props) {
     const [textValue, setTextValue] = useState("")
     const [todos, setlistItems] = useState(props.listItems);
     
-    function itemCloseButtonHandler(e) {
-        let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
+    function itemCloseButtonHandler(index) {
+        //let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
+        let nextTodos = [...todos]
+        nextTodos.splice(index,1)
         setlistItems(nextTodos)
 	}
     
@@ -43,7 +45,7 @@ function ListItems(props) {
                         <li key={listItem.index}>
                             <span>{listItem.label}</span>
                             <button onClick={itemCheckButtonHandler} index={listItem.index} className="bi bi-square"></button>
-                            <button index={listItem.index} onClick={itemCloseButtonHandler} className="bi bi-trash"></button>
+                            <button index={listItem.index} onClick={()=>itemCloseButtonHandler(listItem.index)} className="bi bi-trash"></button>
                         </li>
                     ))}
                 </ul>
@@ -52,7 +54,7 @@ function ListItems(props) {
                         <li key={listItem.index}>
                             <span>{listItem.label}</span>
                             <button onClick={itemCheckButtonHandler} index={listItem.index} className="bi bi-check2-square"></button>
-                            <button index={listItem.index} onClick={itemCloseButtonHandler} className="bi bi-trash"></button>
+                            <button index={listItem.index} onClick={()=>itemCloseButtonHandler(listItem.index)} className="bi bi-trash"></button>
                         </li>
                     ))}
                 </ul>
