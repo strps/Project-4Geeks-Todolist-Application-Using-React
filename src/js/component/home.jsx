@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import Login from "./login.jsx"
 
-import ListItems from "./listItems.jsx"
+import ListItems from "./todos.jsx"
 
-const TodoList = () => {
+const Home = () => {
 
 	const [user, setUser] = useState("")
 
@@ -35,4 +35,4 @@ async function getTodoList(user) {
 
 
 
-export default TodoList;
+export default Home;
