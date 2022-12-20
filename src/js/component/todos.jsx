@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ListItems(props) {
 
@@ -10,7 +10,7 @@ function ListItems(props) {
         if (todos.length > 1) {
             let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
             setlistItems(nextTodos)
-            updateList(props.user, nextTodos)
+        
         } else {
             alert("The list cannot be empty")
         }
@@ -20,7 +20,6 @@ function ListItems(props) {
         let index = event.target.getAttribute("index")
         let nextTodos = todos.map((e, i) => { if (index == i) e.done = !e.done; return e })
         setlistItems(nextTodos)
-        updateList(props.user, nextTodos)
     }
 
     function deleteAllItems(event) {
@@ -34,9 +33,13 @@ function ListItems(props) {
             let nextTodos = [...todos, { label: e.target.value, done: false }]
             setlistItems(nextTodos)
             setTextValue("")
-            updateList(props.user, nextTodos)
+        
         }
     }
+
+    useEffect(()=>{
+        updateList(props.user, todos)
+    },[todos])
 
     let listItemsWithIndex = todos.map((e, i) => { e.index = i; return e })
     let todoItems = listItemsWithIndex.filter(e => !e.done)
