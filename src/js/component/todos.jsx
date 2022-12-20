@@ -12,7 +12,7 @@ function ListItems(props) {
             setlistItems(nextTodos)
             updateList(props.user, nextTodos)
         } else {
-            alert("The lost cannot be empty")
+            alert("The list cannot be empty")
         }
     }
 
