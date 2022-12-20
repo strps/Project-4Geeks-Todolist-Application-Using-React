@@ -12,7 +12,7 @@ const Home = () => {
 
 	return (
 		<>
-			{user ? <ListItems user={user} listItems={listItems} setUser={setUser}/> : <Login setUser={setUser} setlistItems={setlistItems} />}
+			{user ? <ListItems user={user} setUser={setUser}/> : <Login setUser={setUser} setlistItems={setlistItems} />}
 		</>
 	);
 };

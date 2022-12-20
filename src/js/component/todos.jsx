@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 function ListItems(props) {
 
     const [textValue, setTextValue] = useState("")
-    const [todos, setlistItems] = useState(props.listItems);
+    const [todos, setlistItems] = useState([{label:"sample task",done:""}]);
 
     function itemCloseButtonHandler(e) {
-        console.log("TODOS LENGTH: " + todos.length)
         if (todos.length > 1) {
             let nextTodos = todos.filter((a, i) => i != e.target.getAttribute("index"))
             setlistItems(nextTodos)
@@ -91,7 +90,7 @@ async function updateList(user, todos) {
 }
 
 async function deleteList(user) {
-    console.log(`Updating List from user:${user}`)
+    console.log(`Deleting  list, user:${user}`)
     let response = await fetch(`https://assets.breatheco.de/apis/fake/todos/user/${user}`, {
         method: "DELETE"
     })
